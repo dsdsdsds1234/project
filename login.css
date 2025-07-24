@@ -1,0 +1,66 @@
+/* ===== RESET & FONT ===== */
+*{
+  box-sizing:border-box;margin:0;padding:0;
+  font-family:'Poppins',sans-serif;
+}
+
+/* ===== ẢNH NỀN TOÀN MÀN HÌNH ===== */
+body{
+  min-height:100vh;display:flex;justify-content:center;align-items:center;
+  background:url("images/login.jpg") center/cover no-repeat fixed;
+  position:relative;
+}
+body::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.45);           /* tối nhẹ ảnh */
+}
+
+/* ===== KHUNG FORM KÍNH MỜ ===== */
+.login-container{
+  position:relative;z-index:1;          /* nằm trên lớp phủ */
+  width:100%;max-width:400px;padding:32px;
+  border-radius:16px;
+  background:rgba(255,255,255,.15);     /* bán trong suốt */
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+}
+
+.login-container::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  padding:2px;
+  background:linear-gradient(135deg,#ffffff70,#ffffff10);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+
+  pointer-events: none; /* ✅ Thêm dòng này để không cản chuột */
+}
+
+/* ===== NỘI DUNG FORM ===== */
+.login-container h2{
+  text-align:center;margin-bottom:24px;color:#fff;
+}
+
+.input-group{margin-bottom:16px}
+.input-group label{display:block;margin-bottom:6px;color:#f1f1f1;font-size:.9rem}
+.input-group input{
+  width:100%;padding:10px 12px;border:1px solid #eee;border-radius:6px;
+  background:rgba(255,255,255,.3);color:#fff;font-size:.95rem;
+}
+.input-group input::placeholder{color:#e0e0e0}
+.input-group input:focus{border-color:#00bcd4;outline:none}
+
+button{
+  width:100%;padding:12px;border:none;border-radius:6px;
+  background:#00bcd4;color:#fff;font-weight:600;font-size:1rem;cursor:pointer;
+  transition:.3s
+}
+button:hover{background:#019db2}
+
+.options{text-align:center;margin-top:18px;font-size:.9rem}
+.options a{color:#00bcd4;text-decoration:none;transition:opacity .3s}
+.options a:hover{opacity:.7}

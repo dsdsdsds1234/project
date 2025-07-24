@@ -1,0 +1,175 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;color:#fff;
+     background:linear-gradient(135deg,#360033,#0b8793) fixed;}
+a{text-decoration:none;color:inherit}
+
+
+header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2rem;background:rgba(0,0,0,.35);backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:100;
+}
+.logo{font-size:1.6rem;font-weight:600}
+nav{display:flex;align-items:center;gap:1rem}
+nav a{padding:.4rem .8rem;border-radius:4px;transition:.3s}
+nav a:hover{background:rgba(255,255,255,.15)}
+.btn-outline{border:2px solid #fff}
+.btn-outline:hover{background:#fff;color:#360033}
+
+.hero {
+  background: linear-gradient(to right,#ccc, #0b8793);
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  text-align: center;
+  min-height: 80vh;         
+  padding: 20px;
+  background-color: #f5f5f5; 
+}
+
+.hero-left {
+  max-width: 600px;
+}
+
+.centered-title {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.centered-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+  color: #555;
+}
+
+.cta a {
+  margin: 0 10px;
+}
+
+.cta .btn-primary,.cta .btn-secondary{
+  display:inline-block;padding:.75rem 1.6rem;border-radius:8px;font-weight:600;
+  margin-right:.8rem;transition:.3s}
+.btn-primary{background:#ff5aae;color:#fff}
+.btn-primary:hover{box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.btn-secondary{border:2px solid #fff}
+.btn-secondary:hover{background:rgba(255,255,255,.2)}
+
+.hero-right{width:320px}
+.search-card{
+  background:#ffe1b6;border-radius:12px;padding:1.5rem;
+  transform:skewX(-3deg);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.search-card form,#chipContainer{transform:skewX(3deg)}
+#searchForm{display:flex;gap:.5rem}
+#searchInput{flex:1;padding:10px;border:1px solid #ccc;border-radius:6px}
+#searchForm button{padding:10px 16px;border:none;border-radius:6px;
+                   font-weight:600;cursor:pointer;background:#fff}
+.chip{display:inline-block;background:#4c5cff;color:#fff;border-radius:20px;
+      padding:4px 12px;margin-top:12px;font-size:.85rem}
+
+.avatar-btn{width:40px;height:40px;border-radius:50%;background:#ff5aae;
+  display:flex;align-items:center;justify-content:center;font-weight:600;cursor:pointer}
+.dropdown{
+  position:absolute;top:48px;right:0;background:#fff;color:#333;border-radius:8px;
+  box-shadow:0 2px 15px rgba(0,0,0,.2);padding:12px;min-width:180px;display:none}
+.dropdown p{margin:4px 0;font-size:.9rem}
+.dropdown hr{margin:8px 0;border:none;border-top:1px solid #eee}
+
+@media(max-width:768px){
+  .hero{padding-top:140px;flex-direction:column;text-align:center}
+  .hero-left h1{font-size:2rem}
+  .hero-right{width:100%;max-width:320px}
+}
+
+.avatar-box{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  overflow:hidden;         
+  flex-shrink:0;            
+}
+
+
+.avatar-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;      
+  display:block;
+  cursor:pointer;
+}
+
+.banner-section {
+  background-color: #f4f6f9;
+  padding: 40px 20px;
+  border-top: 2px solid #ddd;
+  margin-top: 50px;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.banner-text {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+}
+
+.banner-text h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.banner-text p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.banner-image {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#settings-btn img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 2px #000); 
+    transition: transform 0.2s ease;
+}
+
+#settings-btn img:hover {
+    transform: rotate(90deg);
+}
+  
+
+
+
+
+
+  

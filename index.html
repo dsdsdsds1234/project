@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="application.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Q Master</div>
+    <nav id="mainNav">
+      <a href="login.html" class="auth-link">Đăng nhập</a>
+      <a href="register.html" class="auth-link btn-outline">Đăng ký</a>
+      <div id="avatarSlot"></div>
+    </nav>
+  </header>
+
+ <main>
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="centered-title">Thử thách kiến&nbsp;thức CNTT của&nbsp;bạn</h1>
+      <p class="centered-subtitle">Chọn chủ đề – bắt đầu 30 câu hỏi thú vị, theo dõi điểm và thi đua cùng bạn bè.</p>
+      <div class="cta">
+        <a href="game.html" class="btn-primary">Chơi ngay</a>
+        <a href="leaderboard.html" class="btn-secondary">Bảng xếp hạng</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <a href="settings.html" id="settings-btn">
+    <img src="Images/settings.png" alt="Cài đặt" />
+</a>
+
+
+  <input type="file" id="avatarPicker" accept="image/*" style="display:none">
+
+
+
+  <!-- Banner giới thiệu -->
+  <section class="banner-section">
+    <div class="banner-content">
+      <div class="banner-text">
+        <h2>Về Q Master</h2>
+        <p>Q Master là nền tảng trắc nghiệm kiến thức CNTT giúp bạn rèn luyện kỹ năng, ghi nhớ kiến thức và thi đua cùng bạn bè. Hãy khám phá và chinh phục mọi thử thách!</p>
+      </div>
+      <div class="banner-image">
+        <img src="Images/banner.jpg" alt="Banner Giới thiệu">
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    function hideElems(selector) {
+      document.querySelectorAll(selector).forEach(el => el.style.display = 'none');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const loggedIn = localStorage.getItem('loggedIn') === '1';
+      const avatar   = localStorage.getItem('avatar');
+      const username = localStorage.getItem('username') || 'U';
+      const email    = localStorage.getItem('email') || '';
+
+      const slot = document.getElementById('avatarSlot');
+
+      if (loggedIn || avatar) {
+        hideElems('.auth-link');
+
+        slot.innerHTML = `
+          <div style="position:relative">
+            <div class="avatar-box" id="avatarBtn" style="cursor:pointer">
+              ${avatar
+                ? `<img src="${avatar}" alt="avatar" class="avatar-img">`
+                : `<span class="avatar-btn">${username[0].toUpperCase()}</span>`}
+            </div>
+            <div class="dropdown" id="dropdown" style="display:none">
+              <p><strong>${username}</strong></p>
+              <p>${email}</p><hr>
+              <p id="changeAvt" style="cursor:pointer">Đổi ảnh</p>
+              <p id="logout" style="cursor:pointer;color:#e53935">Đăng xuất</p>
+            </div>
+          </div>
+        `;
+
+        const btn    = document.getElementById('avatarBtn');
+        const dd     = document.getElementById('dropdown');
+        const picker = document.getElementById('avatarPicker');
+
+        btn.onclick = () => {
+          dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+        };
+
+        document.getElementById('changeAvt').onclick = () => picker.click();
+
+        picker.onchange = () => {
+          const file = picker.files[0];
+          if (!file) return;
+          if (!file.type.startsWith('image/')) return alert('Hãy chọn file ảnh!');
+          if (file.size > 1024 * 1024) return alert('Vui lòng chọn ảnh ≤ 1MB');
+
+          const reader = new FileReader();
+          reader.onload = e => {
+            localStorage.setItem('avatar', e.target.result);
+
+            //Cap nhat avt trong user
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const username = localStorage.getItem('username');
+            const updatedUsers = users.map(u =>
+              u.username === username ? { ...u, avatar: e.target.result } : u
+            );
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+            location.reload();
+          };
+          reader.readAsDataURL(file);
+        };
+
+        document.getElementById('logout').onclick = () => {
+          ['loggedIn','username','email','avatar'].forEach(k => localStorage.removeItem(k));
+          location.reload(); 
+        };
+
+      } else {
+        document.querySelectorAll('.auth-link').forEach(el => el.style.display = 'inline-block');
+        slot.innerHTML = ''; 
+      }
+    });
+  </script>
+
+</body>
+</html>
